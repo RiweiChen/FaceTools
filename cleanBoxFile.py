@@ -25,12 +25,12 @@ def retain_max_face(line):
     newline=word[0]+' '+word[4*m+1]+' '+word[4*m+2]+' '+word[4*m+3]+' '+word[4*m+4]+'\n'
     return newline
 
-
-def cleanBoxFile():
-    file0="imageBbox.list"
-    file1="imageBbox_detect.list"
-    file2="imageBbox_miss.list"
-    
+def cleanBoxFile(fileinput="imageBbox.list",detectlistfile="imageBbox_detect.list",misslistfile="imageBbox_miss.list"):
+	'''
+	清除掉没有检测到的人脸图像，或者检测到多个人脸的图像
+	因为只需要考虑单个人脸即可
+	对于多个人脸的情况，可以后面再补充进来。
+	'''
     file0_obj=open(file0,'r')
     file1_obj=open(file1,'w')
     file2_obj=open(file2,'w')

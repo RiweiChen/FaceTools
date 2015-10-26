@@ -100,7 +100,7 @@ def align_all(filelist,imageRootPath,savePath):
         rows,cols = refimage.shape    
     #rows,cols,ch = refimage.shape
     #为保留数据的完整性，重新扫描
-    fid=open('imageListWithPoints.list','r')
+    fid=open(filelist,'r')
     lines=fid.readlines()
     for line in lines:
         word=line.split()
