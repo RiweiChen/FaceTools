@@ -19,7 +19,7 @@ import aligment
 import facecrop
 import textutil
 
-def test(ImagePath,savePathDetect,savePathAligned,fileformat=['png','jpg'],tag_recover=False,savesize=[128,128]):
+def test(ImagePath,savePathDetect,savePathAligned,savePathCroped,fileformat=['png','jpg'],tag_recover=False,savesize=[128,128]):
     '''
     必须提供的参数：
 	1，@ImagePath：待检测和对齐的图像路径
@@ -32,7 +32,14 @@ def test(ImagePath,savePathDetect,savePathAligned,fileformat=['png','jpg'],tag_r
 	
     '''
     
-    
+    if not os.path.exists(savePathDetect):
+	os.makedirs(savePathDetect)
+    if not os.path.exists(savePathAligned):
+	os.makedirs(savePathAligned)
+    if not os.path.exists(savePathCroped):
+	os.makedirs(savePathCroped)
+     
+      
     print 'Begin making filelist. step (1/6) '
     #创建imagelist.list 文件，用来保存文件图像文件列表
     imagelist = './Output/imagelist.list'
@@ -112,13 +119,17 @@ def test(ImagePath,savePathDetect,savePathAligned,fileformat=['png','jpg'],tag_r
     aligment.align_all(imagepointlist,ImagePath,savePathAligned)
     print 'Done Alignment Face. step(6/6)'
     
+    print 'Begin Face croped in'
+    facecrop.face_crop_in(savePathAligned,savePathCroped,replacelist,savesize[0],savesize[1])
+    print 'Done Face croped in '
     print 'All work is done!'
 
 if __name__ == "__main__" :
     '''
     @param: 提供的参数：1，图像的文件名位置，2，需要保留的文件位置，3，图像的格式列表
     '''
-    ImagePath=r'D:\Test\Val'
-    savePathDetect=r'D:\Test\Val_detect'
-    savePathAligned=r'D:\Test\Val_aligned'
-    test(ImagePath,savePathDetect,savePathAligned,tag_recover=True,savesize=[128,128])
+    ImagePath=r'F:\MyDataSet\IdTest\origin'
+    savePathDetect=r'F:\MyDataSet\IdTest\detect'
+    savePathAligned=r'F:\MyDataSet\IdTest\aligned'
+    savePathCroped=r'F:\MyDataSet\IdTest\croped'
+    test(ImagePath,savePathDetect,savePathAligned,savePathCroped,tag_recover=True,savesize=[128,128])
