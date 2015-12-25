@@ -16,7 +16,7 @@
 
 使用实例：
 
-'''
+```
 if __name__ == "__main__" :
     '''
     @param: 提供的参数：1，图像的文件名位置，2，需要保留的文件位置，3，图像的格式列表
@@ -25,7 +25,7 @@ if __name__ == "__main__" :
     savePathDetect=r'D:\Test\Val_detect'#保存中间检测到的图像的路径
     savePathAligned=r'D:\Test\Val_aligned'#对齐后的人脸图像的保存路径
     test(ImagePath,savePathDetect,savePathAligned,tag_recover=True,savesize=[128,128])
-'''
+```
 其中，tag_recover 参数在人脸图像中人脸大小相差比较大的时候使用，如果人脸图像大小大致已经是抠出来的并且大小已经相同，就没有必要在设置这个参数了。
 
 欢迎提出改进意见。
